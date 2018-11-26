@@ -24,6 +24,6 @@ of the two center squares.
 
 • It does not matter which direction Karel is facing at the end of the run.
 
-There are many different algorithms you can use to solve this problem. The \
+There are many different algorithms you can use to solve this problem. The 
 interesting challenge is to come up with a strategy that works.
 */
