@@ -27,3 +27,113 @@ of the two center squares.
 There are many different algorithms you can use to solve this problem. The 
 interesting challenge is to come up with a strategy that works.
 */
+import "turns";
+
+function moveToWall(){
+	while(frontIsClear()){
+		move();
+	}
+}
+
+function nextBox(){
+	move();
+	turnLeft();
+	move();
+	turnRight();
+	if(noBeepersPresent()){
+		findMidPoint();	
+	}
+}
+
+function findMidPoint(){
+	while(noBeepersPresent()){
+		putBeeper();
+		move();
+		if(frontIsBlocked()){
+			turnLeft();
+		}
+	}
+	nextBox();
+}
+
+function goToCenter(){
+	if(frontIsBlocked()){
+		turnAround();
+		while(beepersPresent()){
+			move();
+		}
+	}
+	putBeeper();
+	moveToWall();
+}
+
+function pickEmUp(){
+	while(beepersPresent()){
+		if(frontIsClear()){
+			pickBeeper();
+			move();
+		}
+	}
+	turnAround();
+	move();
+	turnLeft();
+	move();
+}
+
+function nextPickup(){
+	turnRight();
+	if(frontIsClear()){
+		move();
+		turnLeft();
+	}
+	repeat(4){
+		pickEmUp();
+	}
+}
+
+function pickUpAll(){
+	while(beepersPresent()){
+		pickBeeper();
+		if(frontIsBlocked()){
+			turnRight();
+		}
+		move();
+	}
+	nextPickup();
+}
+
+function returnToCenter(){
+	turnRight();
+	move();
+}
+
+function Solve(){
+	findMidPoint();
+	goToCenter();
+	pickUpAll();
+	returnToCenter();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
